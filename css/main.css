@@ -4,6 +4,11 @@
   --usp-color-2: #64c4d2;
   --usp-color-3: #fcb421;
   --usp-color-4: #024e5c;
+
+  --border-top-left:  10px;
+  --border-top-right: 0px;
+  --border-bot-right: 10px;
+  --border-bot-left:  5px;
 }
 
 html {
@@ -50,6 +55,7 @@ div.title {
   border-style: none none solid none;
   border-width: 10px;
   border-color: var(--usp-color-3);
+  border-radius: var(--border-top-left) var(--border-top-right) var(--border-bot-right) var(--border-bot-left);
   /* Font */
   font-size: 25px;
 }
@@ -69,6 +75,7 @@ div.sidebar {
   border-style: none none none solid;
   border-width: 10px;
   border-color: var(--usp-color-3);
+  border-radius: var(--border-top-left) var(--border-top-right) var(--border-bot-right) var(--border-bot-left);
   /* Dimensions */
   width: fit-content;
   height: fit-content;
@@ -105,6 +112,7 @@ div.content {
   border-style: none none none solid;
   border-width: 10px;
   border-color: var(--usp-color-3);
+  border-radius: var(--border-top-left) var(--border-top-right) var(--border-bot-right) var(--border-bot-left);
   /* Font */
   font-size: 20px;
   /* Flush to the right. */
