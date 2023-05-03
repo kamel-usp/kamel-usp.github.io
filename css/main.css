@@ -5,6 +5,19 @@
   --usp-color-3: #fcb421;
   --usp-color-4: #024e5c;
 
+  /* Extensions to the USP color palette */
+  --usp-oxford-blue: #0A122A;
+  --usp-night:       #151515;
+  --usp-wenge:       #5b4b49;
+  --usp-raisin:      #161925;
+  --usp-rose:        #503d42;
+  --usp-light-blue:  #039be5;
+
+  /* Max widths */
+  --title-max-width:   1200px;
+  --content-max-width: 1400px;
+  --sidebar-max-width: 200px;
+
   --border-top-left:  10px;
   --border-top-right: 0px;
   --border-bot-right: 10px;
@@ -14,6 +27,15 @@
 html {
   /* Fonts */
   font-family: 'Fira Sans', 'Karla', 'Sarabun', sans-serif;
+  font-size: 100%;
+  /* Center */
+  display: table;
+  margin: auto;
+}
+
+body {
+  /* Center */
+  display: table-cell;
 }
 
 a {
@@ -23,6 +45,61 @@ a {
 
 a:hover {
   color: var(--usp-color-3);
+}
+
+tt.sc {
+  font-variant: small-caps;
+}
+
+h4 {
+  color: var(--usp-night);
+}
+
+blockquote.highlight {
+  position: relative;
+  padding: 1rem 1.2rem;
+  width: fit-content;
+  max-width: calc(var(--content-max-width)*0.75);
+  color: var(--usp-raisin);
+  font-weight: bold;
+  margin: 1rem auto 2rem;
+  background:
+    linear-gradient(to right, var(--usp-color-1) 4px, transparent 4px) 0 100%,
+    linear-gradient(to left, var(--usp-color-1) 4px, transparent 4px) 100% 0,
+    linear-gradient(to bottom, var(--usp-color-1) 4px, transparent 4px) 100% 0,
+    linear-gradient(to top, var(--usp-color-1) 4px, transparent 4px) 0 100%;
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+}
+
+blockquote.warn {
+  margin: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding: 10px;
+  border-left: .25em solid var(--usp-color-1);
+  width: fit-content;
+}
+
+pre {
+  display: block;
+  overflow: auto;
+  margin: 0px;
+  padding: 0px;
+  word-wrap: normal;
+}
+
+code {
+  font-size: 0.9em;
+}
+
+pre > code {
+  display: block;
+  text-indent: 0;
+  white-space: inherit;
+  font-size: 0.8em;
 }
 
 @media (min-width: 1200px) {
@@ -50,7 +127,9 @@ div.title {
   margin-left: 2.5%;
   margin-right: 2.5%;
   margin-bottom: 50px;
+  margin-top: 30px;
   width: fit-content;
+  max-width: var(--title-max-width);
   /* Border */
   border-style: none none solid none;
   border-width: 10px;
@@ -79,6 +158,7 @@ div.sidebar {
   /* Dimensions */
   width: fit-content;
   height: fit-content;
+  max-width: var(--sidebar-max-width);
   /* Font */
   font-size: 20px;
   /* Flush to the left. */
@@ -103,11 +183,14 @@ div.content {
   color: black;
   /* Padding and margins */
   padding: 20px;
-  padding-left: 40px;
-  padding-right: 50px;
+  padding-left: 50px;
+  padding-right: 60px;
   padding-bottom: 10px;
   margin-left: 20px;
   margin-right: 10%;
+  margin-bottom: 50px;
+  /* Width */
+  max-width: var(--content-max-width);
   /* Border */
   border-style: none none none solid;
   border-width: 10px;

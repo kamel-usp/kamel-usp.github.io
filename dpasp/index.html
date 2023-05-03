@@ -6,7 +6,11 @@
   <meta charset="utf-8">
 
   <!-- Main CSS Stylesheet -->
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="../css/main.css">
+  <!-- Syntax Highlighting -->
+  <link rel="stylesheet" href="../css/syntax.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
   <!-- Fira Sans, Sarabun, Karla Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,31 +18,182 @@
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Mathjax -->
+  <script src="../js/mathjax-config.js" defer></script>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <!-- Title -->
-  <title>dP(ASP)</title>
+  <title>dPASP</title>
 </head>
 
 <body>
   <div class="title">
-    <h1>dP(ASP): A Flexible Differentiable Probabilistic Answer Set Programming Enviroment For Neurosymbolic Learning and Reasoning/h1>
+    <h3>\(\dpasp\): A Flexible Differentiable Probabilistic Answer Set
+      Programming Environment For Neurosymbolic Learning and Reasoning</h3>
   </div>
 
   <div class="container">
 
     <div class="sidebar">
-      <a href="#about" class="sidebar-item">About</a>
+      <a href="#start"  class="sidebar-item">Getting Started</a>
+      <a href="#docs"   class="sidebar-item">Documentation</a>
+      <a href="#source" class="sidebar-item">Source Code</a>
+      <a href="#try"    class="sidebar-item">Try it online!</a>
     </div>
     <div class="content">
-      <a name="#about"></a>
 
-      dP(ASP): A Flexible Differentiable Probabilistic Answer Set Programming Enviroment For Neurosymbolic Learning and Reasoning
+      <blockquote class="highlight">
+        \(\dpasp\), or simply dPASP, is a flexible framework for neuro-probabilistic
+        answer set programming.
+      </blockquote>
 
+      <p>
+        The \(\dpasp\) framework presents a powerful high-level language for describing
+        probabilistic tasks in an intuitive and declarative manner. Just like in traditional
+        probabilistic logic programming (PLP), programs in \(\dpasp\) are written in terms of
+        probabilistic facts or rules, allowing for uncertainty to play a role in the knowledge
+        description of the problem. Notably, our framework further extends PLP by leveraging the
+        expressiveness of neural networks for describing probabilities in possibly hybrid domains.
+        Further, by natively embedding neural expressions within the language, \(\dpasp\) offers
+        end-to-end training of sophisticated models and loss functions while requiring minimal user
+        knowledge of deep learning system's inner workings.
+      </p>
+
+      <h1 id="start">Getting Started</h1>
+
+      <p>
+        \(\dpasp\) is mostly written in C with a front user layer in Python. Although a Python API
+        is exposed for manipulating programs and their output, \(\dpasp\) can be used as a
+        standalone language and interpreter. <a href="#try">Try it online!</a>
+      </p>
+
+      <h2>Installation</h2>
+
+      <p>
+        \(\dpasp\) requires Python version 3.10+ to work and needs access to
+        <a href="https://github.com/potassco/clingo/">Potassco <code>clingo</code></a>'s C API, as
+        we use <code>clingo</code> as a solver. Some Linux distribution packages for
+        <code>clingo</code> do not expose headers or are outdated. Here are some packages we know
+        work with \(\dpasp\):
+      </p>
+
+      <h3>Ubuntu PPA</h3>
+
+      <p><code>clingo</code> and <code>libclingo-dev</code>:</p>
+
+      <pre><code class="language-bash">sudo add-apt-repository ppa:potassco/stable
+sudo apt update
+sudo apt-get install clingo libclingo-dev</code></pre>
+
+      <h3>Mac OS X</h3>
+
+      <blockquote class="warn">
+        <b>Disclaimer:</b> \(\dpasp\) is only tested in Linux machines, and does not fully support
+        Mac OS X! There are known bugs and issues when running pasp in Mac OS X, and so we do not
+        guarantee correctness in other systems. Support for other operating systems is not a
+        priority for now.
+      </blockquote>
+
+      <p>Homebrew <code>clingo</code>:</p>
+
+      <pre><code class="language-bash">brew install clingo</code></pre>
+
+      <p>
+        You may need to append Homebrew to your paths if you have not done so yet:
+      </p>
+
+      <pre><code class="language-bash">export LIBRARY_PATH="${LIBRARY_PATH}:$(brew --prefix)/lib"
+export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:$(brew --prefix)/lib"
+export C_INCLUDE_PATH="${C_INCLUDE_PATH}:$(brew --prefix)/include"</code></pre>
+
+      <p>
+        \(\dpasp\) is available from the PyPI repository as
+        <a href="https://pypi.org/project/pasp-plp/"><code>pasp-plp</code></a>.
+      </p>
+
+      <pre><code class="language-bash">pip install --user --upgrade pasp-plp</code></pre>
+
+      <h3>Arch Linux AUR</h3>
+
+      <p>
+        The <a href="https://aur.archlinux.org/packages/python-pasp"><code>python-pasp</code></a>
+        (and <a href="https://aur.archlinux.org/packages/python-pasp-git"><code>python-pasp-git</code></a>
+        for nightly builds) package is available for Arch Linux users (replace <code>yay</code>
+        with your AUR helper or manually install with <code>makepkg</code>).
+      </p>
+
+      <pre><code class="language-bash">yay -S python-pasp</code></pre>
+
+      <p>
+        This installs \(\dpasp\) and all its dependencies.
+      </p>
+
+      <h2>Running</h2>
+
+      <p>
+        \(\dpasp\) is available either as a Python library,
+      </p>
+
+      <pre><code class="language-python">import pasp
+# Parse a program with the least undefined stable semantics.
+P = pasp.parse("examples/prisoners.plp", semantics="lstable")
+# Run exact credal inference.
+pasp.exact(P)</code></pre>
+
+      <p>
+        or as a command line interpreter.
+      </p>
+
+      <pre><code class="language-bash">% Prints the help message.
+pasp --help
+
+% Runs the prisoners example with credal inference and stable semantics.
+pasp examples/prisoners.plp
+
+ℙ(e1 | u) = [0.290426, 0.379192]
+ℙ(e1 | not b, u) = [0.450125, 0.549875]
+ℙ(g | e1, u) = [0.000000, 1.000000]
+ℙ(d) = [0.000000, 1.000000]
+ℙ(e1 | g, u) = [0.000000, 0.549875]
+ℙ(e1 | ga, u) = [0.279971, 0.390743]
+
+% Runs the 3-coloring example with credal inference and L-stable semantics.
+pasp --sem=lstable examples/3coloring.plp
+
+ℙ(c(1,r)) = [0.000000, 1.000000]
+ℙ(e(1,2) | undef f) = [0.772727, 0.772727]
+ℙ(undef f) = [0.064453, 0.064453]
+
+% Runs the insomnia example with Max-Entropy inference and stable semantics.
+pasp --psem=maxent examples/insomnia.plp
+
+ℙ(insomnia) = 0.300000
+ℙ(work) = 0.650000
+ℙ(sleep) = 0.350000
+ℙ(not sleep) = 0.650000
+ℙ(not work) = 0.350000</code></pre>
+
+      <h1 id="docs">Documentation</h1>
+
+      <p>
+        Full documentation is available <a href="./docs">here</a>.
+      </p>
+
+      <h1 id="source">Source Code</h1>
+
+      <p>
+        The \(\dpasp\) project repository can be found at GitHub
+        <a href="https://github.com/RenatoGeh/pasp">here</a>.
+      </p>
+
+      <h1 id="try">Try it online!</h1>
+
+      <p>
+        Coming soon!
+      </p>
     </div>
 
  </div>
 </body>
-  
+
 </html>
