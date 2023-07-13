@@ -128,13 +128,13 @@ div.title {
   margin-right: 2.5%;
   margin-bottom: 50px;
   margin-top: 30px; */
-  width: fit-content;
+  width: 100% /*fit-content;*/
   max-width: var(--title-max-width);
   /* Border */
   border-style: none none solid none;
   border-width: 10px;
   border-color: var(--usp-color-3);
-  border-radius: var(--border-top-left) var(--border-top-right) var(--border-bot-right) var(--border-bot-left);
+  /* border-radius: var(--border-top-left) var(--border-top-right) var(--border-bot-right) var(--border-bot-left); */
   /* Font */
   font-size: 25px;
 }
