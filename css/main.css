@@ -14,7 +14,7 @@
   --usp-light-blue:  #039be5;
 
   /* Max widths */
-  --title-max-width:   1200px;
+  --title-max-width:   100% /* 1200px; */
   --content-max-width: 1400px;
   --sidebar-max-width: 200px;
 
