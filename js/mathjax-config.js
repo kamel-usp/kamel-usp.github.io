@@ -1,8 +1,8 @@
 window.MathJax = {
   tex: {
     macros: {
-      dpasp: "{\\small d\\mathbb{P}[\\text{ASP}]}",
-      pasp: "{\\mathbb{P}\\text{ASP}}",
+      dpasp: "{\\small d\,\\text{PASP}}",
+      pasp: "{\\text{PASP}}",
     }
   }
 };

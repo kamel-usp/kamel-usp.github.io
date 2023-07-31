@@ -28,7 +28,7 @@
 
 <body>
   <div class="title">
-    <h3>\(\dpasp\): A Flexible Differentiable Probabilistic Answer Set
+    <h3>dPASP: A Flexible Differentiable Probabilistic Answer Set
       Programming Environment For Neurosymbolic Learning and Reasoning</h3>
   </div>
 
@@ -43,18 +43,17 @@
     <div class="content">
 
       <blockquote class="highlight">
-        \(\dpasp\), or simply dPASP, is a flexible framework for neuro-probabilistic
-        answer set programming.
+        dPASP is a flexible framework for neuro-probabilistic answer set programming.
       </blockquote>
 
       <p>
-        The \(\dpasp\) framework presents a powerful high-level language for describing
+        The dPASP framework presents a powerful high-level language for describing
         probabilistic tasks in an intuitive and declarative manner. Just like in traditional
-        probabilistic logic programming (PLP), programs in \(\dpasp\) are written in terms of
+        probabilistic logic programming (PLP), programs in dPASP are written in terms of
         probabilistic facts or rules, allowing for uncertainty to play a role in the knowledge
         description of the problem. Notably, our framework further extends PLP by leveraging the
         expressiveness of neural networks for describing probabilities in possibly hybrid domains.
-        Further, by natively embedding neural expressions within the language, \(\dpasp\) offers
+        Further, by natively embedding neural expressions within the language, dPASP offers
         end-to-end training of sophisticated models and loss functions while requiring minimal user
         knowledge of deep learning system's inner workings.
       </p>
@@ -62,76 +61,21 @@
       <h1 id="start">Getting Started</h1>
 
       <p>
-        \(\dpasp\) is mostly written in C with a front user layer in Python. Although a Python API
-        is exposed for manipulating programs and their output, \(\dpasp\) can be used as a
+        dPASP is mostly written in C with a front user layer in Python. Although a Python API
+        is exposed for manipulating programs and their output, dPASP can be used as a
         standalone language and interpreter. <a href="#try">Try it online!</a>
       </p>
 
       <h2>Installation</h2>
 
       <p>
-        \(\dpasp\) requires Python version 3.10+ to work and needs access to
-        <a href="https://github.com/potassco/clingo/">Potassco <code>clingo</code></a>'s C API, as
-        we use <code>clingo</code> as a solver. Some Linux distribution packages for
-        <code>clingo</code> do not expose headers or are outdated. Here are some packages we know
-        work with \(\dpasp\):
-      </p>
-
-      <h3>Ubuntu PPA</h3>
-
-      <p><code>clingo</code> and <code>libclingo-dev</code>:</p>
-
-      <pre><code class="language-bash">sudo add-apt-repository ppa:potassco/stable
-sudo apt update
-sudo apt-get install clingo libclingo-dev</code></pre>
-
-      <h3>Mac OS X</h3>
-
-      <blockquote class="warn">
-        <b>Disclaimer:</b> \(\dpasp\) is only tested in Linux machines, and does not fully support
-        Mac OS X! There are known bugs and issues when running pasp in Mac OS X, and so we do not
-        guarantee correctness in other systems. Support for other operating systems is not a
-        priority for now.
-      </blockquote>
-
-      <p>Homebrew <code>clingo</code>:</p>
-
-      <pre><code class="language-bash">brew install clingo</code></pre>
-
-      <p>
-        You may need to append Homebrew to your paths if you have not done so yet:
-      </p>
-
-      <pre><code class="language-bash">export LIBRARY_PATH="${LIBRARY_PATH}:$(brew --prefix)/lib"
-export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:$(brew --prefix)/lib"
-export C_INCLUDE_PATH="${C_INCLUDE_PATH}:$(brew --prefix)/include"</code></pre>
-
-      <p>
-        \(\dpasp\) is available from the PyPI repository as
-        <a href="https://pypi.org/project/pasp-plp/"><code>pasp-plp</code></a>.
-      </p>
-
-      <pre><code class="language-bash">pip install --user --upgrade pasp-plp</code></pre>
-
-      <h3>Arch Linux AUR</h3>
-
-      <p>
-        The <a href="https://aur.archlinux.org/packages/python-pasp"><code>python-pasp</code></a>
-        (and <a href="https://aur.archlinux.org/packages/python-pasp-git"><code>python-pasp-git</code></a>
-        for nightly builds) package is available for Arch Linux users (replace <code>yay</code>
-        with your AUR helper or manually install with <code>makepkg</code>).
-      </p>
-
-      <pre><code class="language-bash">yay -S python-pasp</code></pre>
-
-      <p>
-        This installs \(\dpasp\) and all its dependencies.
+        Installation instructions (with a short tutorial on usage) can be found <a href="https://kamel.ime.usp.br/pages/learn_dpasp.html#installation">here</a>.
       </p>
 
       <h2>Running</h2>
 
       <p>
-        \(\dpasp\) is available either as a Python library,
+        dPASP is available either as a Python library,
       </p>
 
       <pre><code class="language-python">import pasp
@@ -173,16 +117,20 @@ pasp --psem=maxent examples/insomnia.plp
 ℙ(not sleep) = 0.650000
 ℙ(not work) = 0.350000</code></pre>
 
-      <h1 id="docs">Documentation</h1>
+      <br>
+
+      See the <a href="https://kamel.ime.usp.br/pages/learn_dpasp.html">"Learning dPASP Through Examples"</a> tutorial for more information on how to program with dPASP.
+
+      <!--<h1 id="docs">Documentation</h1>
 
       <p>
         Full documentation is available <a href="dpasp/pasp.html">here</a>.
-      </p>
+      </p>-->
 
       <h1 id="source">Source Code</h1>
 
       <p>
-        The \(\dpasp\) project repository can be found at GitHub
+        The dPASP project repository can be found at GitHub
         <a href="https://github.com/kamel-usp/dpasp">here</a>.
       </p>
 
